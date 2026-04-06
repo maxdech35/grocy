@@ -11,173 +11,162 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0a0a;
-  --surface: #141414;
-  --surface2: #1e1e1e;
-  --surface3: #282828;
-  --accent: #c8f060;
-  --accent-dim: #8aab2a;
-  --accent-bg: rgba(200,240,96,0.08);
-  --red: #ff5f57;
-  --red-bg: rgba(255,95,87,0.08);
-  --amber: #ffc145;
-  --amber-bg: rgba(255,193,69,0.08);
-  --blue: #5fb8ff;
-  --blue-bg: rgba(95,184,255,0.08);
-  --text: #f0f0f0;
-  --muted: #6a6a6a;
-  --border: rgba(255,255,255,0.07);
-  --font-display: 'Syne', sans-serif;
-  --font-mono: 'DM Mono', monospace;
-  --safe-top: env(safe-area-inset-top, 44px);
-  --safe-bottom: env(safe-area-inset-bottom, 20px);
+  --bg:#0a0a0a;--surface:#141414;--surface2:#1e1e1e;--surface3:#282828;
+  --accent:#c8f060;--accent-bg:rgba(200,240,96,0.08);
+  --red:#ff5f57;--red-bg:rgba(255,95,87,0.08);
+  --amber:#ffc145;--amber-bg:rgba(255,193,69,0.08);
+  --text:#f0f0f0;--muted:#6a6a6a;--border:rgba(255,255,255,0.07);
+  --fd:'Syne',sans-serif;--fm:'DM Mono',monospace;
+  --safe-top:env(safe-area-inset-top,44px);
+  --safe-bottom:env(safe-area-inset-bottom,20px);
 }
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { font-family: var(--font-mono); background: var(--bg); color: var(--text); overflow: hidden; }
-.app { display: flex; flex-direction: column; height: 100vh; height: -webkit-fill-available; max-width: 480px; margin: 0 auto; }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--fm);background:var(--bg);color:var(--text);overflow:hidden}
+.app{display:flex;flex-direction:column;height:100vh;height:-webkit-fill-available;max-width:480px;margin:0 auto}
 
 /* TOPBAR */
-.topbar { padding: calc(var(--safe-top) + 10px) 20px 14px; display: flex; align-items: center; justify-content: space-between; background: var(--bg); border-bottom: 1px solid var(--border); flex-shrink: 0; }
-.logo { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.5px; color: var(--accent); }
-.logo span { color: var(--muted); font-weight: 400; }
-.status-pill { display: flex; align-items: center; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 5px 10px; font-size: 11px; color: var(--muted); }
-.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); transition: background 0.4s, box-shadow 0.4s; }
-.dot.ok { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
-.dot.err { background: var(--red); box-shadow: 0 0 6px var(--red); }
+.topbar{padding:calc(var(--safe-top) + 10px) 20px 14px;display:flex;align-items:center;justify-content:space-between;background:var(--bg);border-bottom:1px solid var(--border);flex-shrink:0}
+.logo{font-family:var(--fd);font-weight:800;font-size:22px;letter-spacing:-0.5px;color:var(--accent)}
+.logo span{color:var(--muted);font-weight:400}
+.status-pill{display:flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:5px 10px;font-size:11px;color:var(--muted)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--muted);transition:background .4s,box-shadow .4s}
+.dot.ok{background:var(--accent);box-shadow:0 0 6px var(--accent)}
+.dot.err{background:var(--red);box-shadow:0 0 6px var(--red)}
+.dot.warn{background:var(--amber);box-shadow:0 0 6px var(--amber)}
 
 /* MAIN */
-.main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px 16px 0; }
+.main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 16px 0}
+.page{display:none}.page.active{display:block}
 
 /* TABS */
-.tabs { display: flex; background: var(--surface); border-top: 1px solid var(--border); padding-bottom: var(--safe-bottom); flex-shrink: 0; }
-.tab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 10px 4px 6px; border: none; background: transparent; color: var(--muted); font-size: 10px; font-family: var(--font-mono); cursor: pointer; transition: color 0.2s; position: relative; }
-.tab.active { color: var(--accent); }
-.tab.active::before { content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 2px; background: var(--accent); border-radius: 0 0 2px 2px; }
-.tab-icon { font-size: 20px; line-height: 1; }
+.tabs{display:flex;background:var(--surface);border-top:1px solid var(--border);padding-bottom:var(--safe-bottom);flex-shrink:0}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px 6px;border:none;background:transparent;color:var(--muted);font-size:10px;font-family:var(--fm);cursor:pointer;transition:color .2s;position:relative}
+.tab.active{color:var(--accent)}
+.tab.active::before{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:var(--accent);border-radius:0 0 2px 2px}
+.tab-icon{font-size:20px;line-height:1}
 
-/* PAGES */
-.page { display: none; }
-.page.active { display: block; }
+/* SCAN */
+.scan-hero{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px 20px;margin-bottom:16px;display:flex;flex-direction:column;align-items:center;gap:16px;position:relative;overflow:hidden}
+.scan-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:var(--accent-bg);pointer-events:none}
+.scan-icon-wrap{width:80px;height:80px;border-radius:20px;background:var(--accent-bg);border:1px solid rgba(200,240,96,.2);display:flex;align-items:center;justify-content:center;font-size:36px}
+.scan-title{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--text);text-align:center}
+.scan-hint{font-size:12px;color:var(--muted);text-align:center;line-height:1.6}
 
-/* SCAN PAGE */
-.scan-hero { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px 20px; margin-bottom: 16px; display: flex; flex-direction: column; align-items: center; gap: 16px; position: relative; overflow: hidden; }
-.scan-hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; border-radius: 50%; background: var(--accent-bg); pointer-events: none; }
-.scan-icon-wrap { width: 80px; height: 80px; border-radius: 20px; background: var(--accent-bg); border: 1px solid rgba(200,240,96,0.2); display: flex; align-items: center; justify-content: center; font-size: 36px; }
-.scan-title { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); text-align: center; }
-.scan-hint { font-size: 12px; color: var(--muted); text-align: center; line-height: 1.6; }
-
-.barcode-row { display: flex; gap: 8px; margin-bottom: 16px; }
-.barcode-input { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; font-family: var(--font-mono); font-size: 15px; color: var(--text); outline: none; transition: border-color 0.2s; letter-spacing: 1px; }
-.barcode-input:focus { border-color: var(--accent); }
-.barcode-input::placeholder { color: var(--muted); letter-spacing: 0; }
-.cam-btn { width: 52px; height: 52px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); font-size: 22px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text); }
+.barcode-row{display:flex;gap:8px;margin-bottom:16px}
+.barcode-input{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;font-family:var(--fm);font-size:15px;color:var(--text);outline:none;transition:border-color .2s;letter-spacing:1px}
+.barcode-input:focus{border-color:var(--accent)}
+.barcode-input::placeholder{color:var(--muted);letter-spacing:0}
+.cam-btn{width:52px;height:52px;border-radius:12px;border:1px solid var(--border);background:var(--surface);font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text)}
 
 /* CAMERA */
-.camera-view { display: none; position: fixed; inset: 0; z-index: 100; background: #000; flex-direction: column; }
-.camera-view.open { display: flex; }
-.camera-topbar { padding: calc(var(--safe-top) + 10px) 20px 14px; display: flex; align-items: center; justify-content: space-between; background: rgba(0,0,0,0.7); }
-.camera-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: white; }
-.cam-close { background: rgba(255,255,255,0.15); border: none; border-radius: 50%; width: 36px; height: 36px; font-size: 18px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-#cameraVideo { flex: 1; width: 100%; object-fit: cover; }
-.scan-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
-.scan-frame { width: 240px; height: 160px; border: 2px solid var(--accent); border-radius: 12px; box-shadow: 0 0 0 9999px rgba(0,0,0,0.5), 0 0 20px rgba(200,240,96,0.3); }
-.scan-line { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 220px; height: 2px; background: var(--accent); animation: scanline 2s ease-in-out infinite; border-radius: 1px; }
-@keyframes scanline { 0%,100% { top: calc(50% - 60px); opacity: 1; } 50% { top: calc(50% + 60px); opacity: 0.6; } }
-.cam-hint { position: absolute; bottom: 80px; left: 0; right: 0; text-align: center; color: white; font-size: 13px; opacity: 0.7; }
+.camera-view{display:none;position:fixed;inset:0;z-index:100;background:#000;flex-direction:column}
+.camera-view.open{display:flex}
+.camera-topbar{padding:calc(var(--safe-top) + 10px) 20px 14px;display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.7)}
+.camera-title{font-family:var(--fd);font-size:16px;font-weight:700;color:white}
+.cam-close{background:rgba(255,255,255,.15);border:none;border-radius:50%;width:36px;height:36px;font-size:18px;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#cameraVideo{flex:1;width:100%;object-fit:cover}
+.scan-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.scan-frame{width:240px;height:160px;border:2px solid var(--accent);border-radius:12px;box-shadow:0 0 0 9999px rgba(0,0,0,.5),0 0 20px rgba(200,240,96,.3)}
+.scan-line{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:220px;height:2px;background:var(--accent);animation:scanline 2s ease-in-out infinite;border-radius:1px}
+@keyframes scanline{0%,100%{top:calc(50% - 60px);opacity:1}50%{top:calc(50% + 60px);opacity:.6}}
+.cam-hint{position:absolute;bottom:80px;left:0;right:0;text-align:center;color:white;font-size:13px;opacity:.7}
 
-/* PRODUCT CARD */
-.product-result { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 16px; animation: slideUp 0.3s ease; }
-@keyframes slideUp { from { transform: translateY(12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.product-header { padding: 16px 18px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--border); }
-.product-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
-.product-info { flex: 1; min-width: 0; }
-.product-name { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.product-barcode { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.stock-badge { font-family: var(--font-mono); font-size: 22px; font-weight: 500; color: var(--accent); flex-shrink: 0; }
+/* PRODUCT */
+.product-result{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:16px;animation:slideUp .3s ease}
+@keyframes slideUp{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+.product-header{padding:16px 18px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border)}
+.product-icon{width:52px;height:52px;border-radius:14px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.product-info{flex:1;min-width:0}
+.product-name{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.product-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.stock-badge{font-family:var(--fm);font-size:22px;font-weight:500;color:var(--accent);flex-shrink:0}
 
-.qty-row { display: flex; align-items: center; gap: 0; padding: 14px 18px; border-bottom: 1px solid var(--border); }
-.qty-label { font-size: 11px; color: var(--muted); flex: 1; }
-.qty-controls { display: flex; align-items: center; background: var(--surface2); border-radius: 10px; overflow: hidden; }
-.qty-btn { width: 40px; height: 40px; border: none; background: transparent; font-size: 20px; color: var(--text); cursor: pointer; display: flex; align-items: center; justify-content: center; }
-.qty-num { min-width: 44px; text-align: center; font-size: 17px; font-weight: 500; }
+.qty-row{display:flex;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border)}
+.qty-label{font-size:11px;color:var(--muted);flex:1}
+.qty-controls{display:flex;align-items:center;background:var(--surface2);border-radius:10px;overflow:hidden}
+.qty-btn{width:40px;height:40px;border:none;background:transparent;font-size:20px;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.qty-num{min-width:44px;text-align:center;font-size:17px;font-weight:500}
 
-.action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 14px; }
-.action-btn { border-radius: 12px; border: 1px solid transparent; padding: 13px 10px; font-family: var(--font-mono); font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; transition: opacity 0.15s; }
-.action-btn:active { opacity: 0.7; }
-.btn-purchase { background: var(--accent-bg); color: var(--accent); border-color: rgba(200,240,96,0.2); }
-.btn-consume { background: var(--red-bg); color: var(--red); border-color: rgba(255,95,87,0.2); }
-.btn-open { background: var(--amber-bg); color: var(--amber); border-color: rgba(255,193,69,0.2); }
-.btn-spoiled { background: var(--surface2); color: var(--muted); border-color: var(--border); }
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px}
+.action-btn{border-radius:12px;border:1px solid transparent;padding:13px 10px;font-family:var(--fm);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .15s}
+.action-btn:active{opacity:.7}
+.btn-purchase{background:var(--accent-bg);color:var(--accent);border-color:rgba(200,240,96,.2)}
+.btn-consume{background:var(--red-bg);color:var(--red);border-color:rgba(255,95,87,.2)}
+.btn-open{background:var(--amber-bg);color:var(--amber);border-color:rgba(255,193,69,.2)}
+.btn-spoiled{background:var(--surface2);color:var(--muted);border-color:var(--border)}
 
-/* CREATE FORM */
-.create-form { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 16px; animation: slideUp 0.3s ease; }
-.form-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin-bottom: 16px; color: var(--accent); }
-.field-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; display: block; }
-.field-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-family: var(--font-mono); font-size: 14px; color: var(--text); outline: none; margin-bottom: 12px; transition: border-color 0.2s; }
-.field-input:focus { border-color: var(--accent); }
-.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.date-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; font-family: var(--font-mono); font-size: 14px; color: var(--text); outline: none; margin-bottom: 12px; color-scheme: dark; }
-.date-input:focus { border-color: var(--accent); }
-.big-btn { width: 100%; border: none; border-radius: 12px; padding: 15px; font-family: var(--font-display); font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity 0.15s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-.big-btn:active { opacity: 0.8; }
-.btn-accent { background: var(--accent); color: #0a0a0a; }
-.btn-ghost { background: var(--surface2); color: var(--muted); margin-top: 8px; }
+/* CREATE */
+.create-form{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:16px;animation:slideUp .3s ease}
+.form-title{font-family:var(--fd);font-size:16px;font-weight:700;margin-bottom:16px;color:var(--accent)}
+.field-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px;display:block}
+.field-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-family:var(--fm);font-size:14px;color:var(--text);outline:none;margin-bottom:12px;transition:border-color .2s}
+.field-input:focus{border-color:var(--accent)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.date-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-family:var(--fm);font-size:14px;color:var(--text);outline:none;margin-bottom:12px;color-scheme:dark}
+.date-input:focus{border-color:var(--accent)}
+.big-btn{width:100%;border:none;border-radius:12px;padding:15px;font-family:var(--fd);font-size:15px;font-weight:700;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.big-btn:active{opacity:.8}
+.btn-accent{background:var(--accent);color:#0a0a0a}
+.btn-ghost{background:var(--surface2);color:var(--muted);margin-top:8px}
 
-/* STOCK PAGE */
-.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
-.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 12px; text-align: center; }
-.stat-num { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--accent); }
-.stat-label { font-size: 10px; color: var(--muted); margin-top: 3px; }
-.stat-card.warn .stat-num { color: var(--amber); }
-.stat-card.danger .stat-num { color: var(--red); }
-
-.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-.section-title { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
-.refresh-btn { background: none; border: none; color: var(--muted); font-size: 18px; cursor: pointer; padding: 4px; transition: transform 0.3s; }
-.refresh-btn.spinning { animation: spin 0.6s linear; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.search-bar { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; font-family: var(--font-mono); font-size: 14px; color: var(--text); outline: none; width: 100%; margin-bottom: 14px; transition: border-color 0.2s; }
-.search-bar:focus { border-color: var(--accent); }
-.search-bar::placeholder { color: var(--muted); }
-
-.stock-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-.stock-item { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background 0.15s; }
-.stock-item:active { background: var(--surface2); }
-.stock-item.low-stock { border-color: rgba(255,193,69,0.3); }
-.stock-item.no-stock { border-color: rgba(255,95,87,0.2); }
-.stock-name { flex: 1; font-size: 14px; font-family: var(--font-display); font-weight: 600; }
-.stock-details { font-size: 11px; color: var(--muted); margin-top: 1px; }
-.qty-chip { font-family: var(--font-mono); font-size: 13px; font-weight: 500; padding: 4px 10px; border-radius: 20px; }
-.qty-chip.ok { background: var(--accent-bg); color: var(--accent); }
-.qty-chip.low { background: var(--amber-bg); color: var(--amber); }
-.qty-chip.zero { background: var(--red-bg); color: var(--red); }
-.expiry-chip { font-size: 10px; padding: 2px 7px; border-radius: 20px; margin-left: 6px; }
-.expiry-ok { background: var(--accent-bg); color: var(--accent); }
-.expiry-warn { background: var(--amber-bg); color: var(--amber); }
-.expiry-bad { background: var(--red-bg); color: var(--red); }
+/* STOCK */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 12px;text-align:center}
+.stat-num{font-family:var(--fd);font-size:24px;font-weight:800;color:var(--accent)}
+.stat-label{font-size:10px;color:var(--muted);margin-top:3px}
+.stat-card.warn .stat-num{color:var(--amber)}
+.stat-card.danger .stat-num{color:var(--red)}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.section-title{font-family:var(--fd);font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.refresh-btn{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px;transition:transform .3s}
+.refresh-btn.spinning{animation:spin .6s linear}
+@keyframes spin{to{transform:rotate(360deg)}}
+.search-bar{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 16px;font-family:var(--fm);font-size:14px;color:var(--text);outline:none;width:100%;margin-bottom:14px;transition:border-color .2s}
+.search-bar:focus{border-color:var(--accent)}
+.search-bar::placeholder{color:var(--muted)}
+.stock-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.stock-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:background .15s}
+.stock-item:active{background:var(--surface2)}
+.stock-item.low-stock{border-color:rgba(255,193,69,.3)}
+.stock-item.no-stock{border-color:rgba(255,95,87,.2)}
+.stock-name{flex:1;font-size:14px;font-family:var(--fd);font-weight:600}
+.stock-details{font-size:11px;color:var(--muted);margin-top:1px}
+.qty-chip{font-family:var(--fm);font-size:13px;font-weight:500;padding:4px 10px;border-radius:20px}
+.qty-chip.ok{background:var(--accent-bg);color:var(--accent)}
+.qty-chip.low{background:var(--amber-bg);color:var(--amber)}
+.qty-chip.zero{background:var(--red-bg);color:var(--red)}
+.expiry-chip{font-size:10px;padding:2px 7px;border-radius:20px;margin-left:6px}
+.expiry-ok{background:var(--accent-bg);color:var(--accent)}
+.expiry-warn{background:var(--amber-bg);color:var(--amber)}
+.expiry-bad{background:var(--red-bg);color:var(--red)}
 
 /* SHOPPING */
-.shopping-item { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-.shopping-item.done { opacity: 0.4; }
-.check-box { width: 24px; height: 24px; border-radius: 6px; border: 1.5px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; transition: background 0.15s, border-color 0.15s; }
-.check-box.checked { background: var(--accent); border-color: var(--accent); color: #0a0a0a; }
-.shop-name { flex: 1; font-size: 14px; font-family: var(--font-display); font-weight: 600; }
-.shop-qty { font-size: 12px; color: var(--muted); }
+.shopping-item{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.shopping-item.done{opacity:.4}
+.check-box{width:24px;height:24px;border-radius:6px;border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:background .15s,border-color .15s}
+.check-box.checked{background:var(--accent);border-color:var(--accent);color:#0a0a0a}
+.shop-name{flex:1;font-size:14px;font-family:var(--fd);font-weight:600}
+.shop-qty{font-size:12px;color:var(--muted)}
 
 /* TOAST */
-.toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--surface3); border: 1px solid var(--border); color: var(--text); padding: 11px 20px; border-radius: 30px; font-size: 13px; font-family: var(--font-mono); white-space: nowrap; opacity: 0; transition: opacity 0.2s, transform 0.2s; z-index: 200; pointer-events: none; }
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.toast.success { color: var(--accent); border-color: rgba(200,240,96,0.3); }
-.toast.error { color: var(--red); border-color: rgba(255,95,87,0.3); }
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--surface3);border:1px solid var(--border);color:var(--text);padding:11px 20px;border-radius:30px;font-size:13px;font-family:var(--fm);white-space:nowrap;opacity:0;transition:opacity .2s,transform .2s;z-index:200;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{color:var(--accent);border-color:rgba(200,240,96,.3)}
+.toast.error{color:var(--red);border-color:rgba(255,95,87,.3)}
+
+/* ERROR PANEL */
+.error-panel{background:var(--surface);border:1px solid rgba(255,95,87,.3);border-radius:16px;padding:20px;margin-bottom:16px}
+.error-title{font-family:var(--fd);font-size:15px;font-weight:700;color:var(--red);margin-bottom:8px}
+.error-msg{font-size:12px;color:var(--muted);line-height:1.7;word-break:break-all}
+.error-tip{font-size:12px;color:var(--amber);margin-top:10px;line-height:1.6}
 
 /* MISC */
-.loading { display: flex; align-items: center; justify-content: center; padding: 30px; color: var(--muted); gap: 10px; font-size: 13px; }
-.spinner { width: 18px; height: 18px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.7s linear infinite; }
-.empty-state { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 40px 20px; color: var(--muted); text-align: center; }
-.empty-icon { font-size: 48px; opacity: 0.5; }
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 2px; }
+.loading{display:flex;align-items:center;justify-content:center;padding:30px;color:var(--muted);gap:10px;font-size:13px}
+.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+.empty-state{display:flex;flex-direction:column;align-items:center;gap:12px;padding:40px 20px;color:var(--muted);text-align:center}
+.empty-icon{font-size:48px;opacity:.5}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--surface3);border-radius:2px}
 </style>
 </head>
 <body>
@@ -191,13 +180,11 @@ body { font-family: var(--font-mono); background: var(--bg); color: var(--text);
   </div>
 
   <div class="main" id="mainScroll">
-
-    <!-- SCAN -->
     <div class="page active" id="page-scan">
       <div class="scan-hero">
         <div class="scan-icon-wrap">📷</div>
         <div class="scan-title">Scanner un produit</div>
-        <div class="scan-hint">Scannez le code-barres avec la caméra ou saisissez-le manuellement</div>
+        <div class="scan-hint">Caméra ou saisie manuelle du code-barres</div>
       </div>
       <div class="barcode-row">
         <input type="text" class="barcode-input" id="barcodeInput" placeholder="Code-barres..." inputmode="numeric">
@@ -206,7 +193,6 @@ body { font-family: var(--font-mono); background: var(--bg); color: var(--text);
       <div id="scanResult"></div>
     </div>
 
-    <!-- STOCK -->
     <div class="page" id="page-stock">
       <div class="stats-row">
         <div class="stat-card"><div class="stat-num" id="statTotal">—</div><div class="stat-label">produits</div></div>
@@ -223,7 +209,6 @@ body { font-family: var(--font-mono); background: var(--bg); color: var(--text);
       </div>
     </div>
 
-    <!-- SHOPPING -->
     <div class="page" id="page-shopping">
       <div class="section-header">
         <span class="section-title">liste de courses</span>
@@ -233,7 +218,6 @@ body { font-family: var(--font-mono); background: var(--bg); color: var(--text);
         <div class="loading"><div class="spinner"></div> Chargement...</div>
       </div>
     </div>
-
   </div>
 
   <div class="tabs">
@@ -243,7 +227,6 @@ body { font-family: var(--font-mono); background: var(--bg); color: var(--text);
   </div>
 </div>
 
-<!-- CAMERA -->
 <div class="camera-view" id="cameraView">
   <div class="camera-topbar">
     <span class="camera-title">Scanner le code-barres</span>
@@ -264,11 +247,8 @@ body { font-family: var(--font-mono); background: var(--bg); color: var(--text);
 <script src="https://unpkg.com/@zxing/library@0.21.2/umd/index.min.js"></script>
 <script>
 // ── CONFIG ──
-const HA_URL    = 'https://maximedechamps7.freeboxos.fr:8123';
-const HA_TOKEN  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJiODBhMzZhNWYyYjE0MGQ2Yjg3OTcxNGE1ZjlkMWE4MiIsImlhdCI6MTc3NTQ4MzY1MiwiZXhwIjoyMDkwODQzNjUyfQ.6185GvXsi36ih2KZUN5X2hcYpnUkpsVpAsCLKz-mT54';
-const GROCY_API = 'XFDvWXFNoRld8elsZRKe7OTHcEOkZITQ1mdDFRC5NPC0o4NcUh';
-// L'ingress path de Grocy dans HA
-const INGRESS   = '/api/hassio_ingress/a0d7b954_grocy';
+const GROCY_KEY  = 'XFDvWXFNoRld8elsZRKe7OTHcEOkZITQ1mdDFRC5NPC0o4NcUh';
+const GROCY_BASE = 'http://maximedechamps7.freeboxos.fr:9182/api';
 
 // ── STATE ──
 let allStock = [];
@@ -277,23 +257,20 @@ let cameraStream = null;
 let codeReader   = null;
 
 // ── API ──
-// Grocy est servi via HA Ingress — on appelle via le proxy HA
-async function grocyApi(method, path, body) {
-  const url = `${HA_URL}${INGRESS}/api${path}`;
+async function api(method, path, body) {
+  const url = `${GROCY_BASE}${path}`;
   const opts = {
     method,
     headers: {
-      'Authorization': `Bearer ${HA_TOKEN}`,
-      'Content-Type': 'application/json',
-      'GROCY-API-KEY': GROCY_API
-    },
-    credentials: 'include'
+      'GROCY-API-KEY': GROCY_KEY,
+      'Content-Type': 'application/json'
+    }
   };
   if (body) opts.body = JSON.stringify(body);
   const r = await fetch(url, opts);
   if (!r.ok) {
     const txt = await r.text().catch(()=>'');
-    throw new Error(`${r.status}: ${txt.slice(0,100)}`);
+    throw new Error(`HTTP ${r.status} — ${txt.slice(0,120)}`);
   }
   if (r.status === 204) return {};
   return r.json();
@@ -302,25 +279,32 @@ async function grocyApi(method, path, body) {
 // ── STATUS ──
 async function checkStatus() {
   try {
-    await grocyApi('GET', '/system/info');
-    setStatus('ok', 'connecté');
+    const info = await api('GET', '/system/info');
+    setStatus('ok', `grocy ${info?.grocy_version||'ok'}`);
   } catch(e) {
-    // Try alternate base path
-    try {
-      const r = await fetch(`${HA_URL}/api/hassio/ingress/panels`, {
-        headers: { 'Authorization': `Bearer ${HA_TOKEN}` }
-      });
-      if (r.ok) setStatus('ok', 'HA connecté');
-      else setStatus('err', 'erreur API');
-    } catch {
-      setStatus('err', 'erreur réseau');
-    }
+    setStatus('err', 'erreur');
+    showError(e.message);
   }
 }
 
 function setStatus(state, text) {
   document.getElementById('statusDot').className = `dot ${state}`;
   document.getElementById('statusText').textContent = text;
+}
+
+function showError(msg) {
+  const el = document.getElementById('scanResult');
+  el.innerHTML = `
+    <div class="error-panel">
+      <div class="error-title">⚠ Connexion impossible</div>
+      <div class="error-msg">${msg}</div>
+      <div class="error-tip">
+        Vérifiez que :<br>
+        • Vous êtes connecté au réseau de la Freebox<br>
+        • Grocy est actif dans Home Assistant<br>
+        • Le fichier est ouvert depuis : <strong>${ORIGIN}/local/grocy.html</strong>
+      </div>
+    </div>`;
 }
 
 // ── TOAST ──
@@ -330,7 +314,7 @@ function toast(msg, type='') {
   t.textContent = msg;
   t.className = `toast show ${type}`;
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.className='toast', 2800);
+  toastTimer = setTimeout(()=>t.className='toast', 2800);
 }
 
 // ── TABS ──
@@ -352,7 +336,7 @@ document.getElementById('barcodeInput').addEventListener('input', e => {
   const v = e.target.value.trim();
   if (v.length >= 8 && /^\d+$/.test(v)) {
     clearTimeout(window._bcTimer);
-    window._bcTimer = setTimeout(() => lookupBarcode(v), 600);
+    window._bcTimer = setTimeout(()=>lookupBarcode(v), 600);
   }
 });
 
@@ -364,13 +348,13 @@ async function lookupBarcode(barcode) {
   try {
     let found = null;
     try {
-      const res = await grocyApi('GET', `/stock/products/by-barcode/${barcode}`);
+      const res = await api('GET', `/stock/products/by-barcode/${barcode}`);
       if (res && res.product) found = res.product;
     } catch {}
 
     if (found) {
       let stockInfo = null;
-      try { stockInfo = await grocyApi('GET', `/stock/products/${found.id}`); } catch {}
+      try { stockInfo = await api('GET', `/stock/products/${found.id}`); } catch {}
       showProductResult(found, stockInfo, barcode);
     } else {
       showCreateForm(barcode);
@@ -388,8 +372,8 @@ function showProductResult(product, stockInfo, barcode) {
   let expiryHtml = '';
   if (stockInfo?.next_due_date && stockInfo.next_due_date !== '2999-12-31') {
     const diff = Math.floor((new Date(stockInfo.next_due_date) - Date.now()) / 86400000);
-    const cls = diff<0 ? 'expiry-bad' : diff<7 ? 'expiry-warn' : 'expiry-ok';
-    const label = diff<0 ? `exp. il y a ${-diff}j` : diff===0 ? 'expire auj.' : `exp. dans ${diff}j`;
+    const cls = diff<0?'expiry-bad':diff<7?'expiry-warn':'expiry-ok';
+    const label = diff<0?`exp. il y a ${-diff}j`:diff===0?'expire auj.':`exp. dans ${diff}j`;
     expiryHtml = `<span class="expiry-chip ${cls}">${label}</span>`;
   }
 
@@ -399,12 +383,12 @@ function showProductResult(product, stockInfo, barcode) {
         <div class="product-icon">🛒</div>
         <div class="product-info">
           <div class="product-name">${product.name}</div>
-          <div class="product-barcode">${barcode}${expiryHtml}</div>
+          <div class="product-sub">${barcode}${expiryHtml}</div>
         </div>
         <div class="stock-badge">${qty}</div>
       </div>
       <div class="qty-row">
-        <span class="qty-label">quantité à modifier</span>
+        <span class="qty-label">quantité</span>
         <div class="qty-controls">
           <button class="qty-btn" onclick="changeQty(-1)">−</button>
           <span class="qty-num" id="qtyNum">1</span>
@@ -427,19 +411,13 @@ function changeQty(d) {
 
 async function doAction(action, productId, barcode) {
   try {
-    const endpoint = action==='consume-spoiled'
-      ? `/stock/products/${productId}/consume`
-      : `/stock/products/${productId}/${action}`;
-    const body = action==='consume-spoiled'
-      ? { amount: scanQty, spoiled: true }
-      : { amount: scanQty };
-    await grocyApi('POST', endpoint, body);
-    const labels = { purchase:'Ajouté ✓', consume:'Consommé ✓', open:'Ouvert ✓', 'consume-spoiled':'Supprimé ✓' };
+    const ep = action==='consume-spoiled' ? `/stock/products/${productId}/consume` : `/stock/products/${productId}/${action}`;
+    const body = action==='consume-spoiled' ? {amount:scanQty,spoiled:true} : {amount:scanQty};
+    await api('POST', ep, body);
+    const labels = {purchase:'Ajouté ✓',consume:'Consommé ✓',open:'Ouvert ✓','consume-spoiled':'Supprimé ✓'};
     toast(labels[action], 'success');
-    setTimeout(() => lookupBarcode(barcode), 600);
-  } catch(e) {
-    toast(`Erreur: ${e.message}`, 'error');
-  }
+    setTimeout(()=>lookupBarcode(barcode), 600);
+  } catch(e) { toast(`Erreur: ${e.message}`, 'error'); }
 }
 
 // ── CREATE ──
@@ -447,7 +425,7 @@ function showCreateForm(barcode) {
   document.getElementById('scanResult').innerHTML = `
     <div class="create-form">
       <div class="form-title">✦ Nouveau produit</div>
-      <label class="field-label">Nom du produit *</label>
+      <label class="field-label">Nom *</label>
       <input class="field-input" id="newName" placeholder="Ex: Lait demi-écrémé..." type="text">
       <label class="field-label">Code-barres</label>
       <input class="field-input" id="newBarcode" value="${barcode}" type="text" inputmode="numeric">
@@ -455,16 +433,16 @@ function showCreateForm(barcode) {
       <input class="date-input" id="newExpiry" type="date">
       <div class="field-row">
         <div>
-          <label class="field-label">Quantité initiale</label>
+          <label class="field-label">Qté initiale</label>
           <input class="field-input" id="newQty" value="1" type="number" min="0" style="margin-bottom:0">
         </div>
         <div>
-          <label class="field-label">Min. en stock</label>
+          <label class="field-label">Min. stock</label>
           <input class="field-input" id="newMin" value="0" type="number" min="0" style="margin-bottom:0">
         </div>
       </div>
       <br>
-      <button class="big-btn btn-accent" onclick="createProduct()">✦ Créer le produit</button>
+      <button class="big-btn btn-accent" onclick="createProduct()">✦ Créer</button>
       <button class="big-btn btn-ghost" onclick="document.getElementById('scanResult').innerHTML='';document.getElementById('barcodeInput').value=''">Annuler</button>
     </div>`;
 }
@@ -475,35 +453,33 @@ async function createProduct() {
   try {
     let quId=1, locationId=1;
     try {
-      const qus = await grocyApi('GET','/objects/quantity_units');
+      const qus = await api('GET','/objects/quantity_units');
       if (qus?.length) quId = qus[0].id;
-      const locs = await grocyApi('GET','/objects/locations');
+      const locs = await api('GET','/objects/locations');
       if (locs?.length) locationId = locs[0].id;
     } catch {}
 
-    const product = await grocyApi('POST','/objects/products',{
+    const res = await api('POST','/objects/products',{
       name, qu_id_purchase:quId, qu_id_stock:quId, location_id:locationId,
-      min_stock_amount: parseInt(document.getElementById('newMin').value)||0
+      min_stock_amount:parseInt(document.getElementById('newMin').value)||0
     });
-    const productId = product.created_object_id;
+    const productId = res.created_object_id;
 
     const barcode = document.getElementById('newBarcode').value.trim();
     if (barcode && productId) {
-      try { await grocyApi('POST','/objects/product_barcodes',{product_id:productId,barcode,qu_id:quId}); } catch {}
+      try { await api('POST','/objects/product_barcodes',{product_id:productId,barcode,qu_id:quId}); } catch {}
     }
     const qty = parseFloat(document.getElementById('newQty').value)||0;
     const expiry = document.getElementById('newExpiry').value;
     if (qty>0 && productId) {
       const body = {amount:qty};
       if (expiry) body.best_before_date = expiry;
-      await grocyApi('POST',`/stock/products/${productId}/add`,body);
+      await api('POST',`/stock/products/${productId}/add`,body);
     }
-    toast(`${name} créé ✓`,'success');
-    document.getElementById('scanResult').innerHTML='';
-    document.getElementById('barcodeInput').value='';
-  } catch(e) {
-    toast(`Erreur création: ${e.message}`,'error');
-  }
+    toast(`${name} créé ✓`, 'success');
+    document.getElementById('scanResult').innerHTML = '';
+    document.getElementById('barcodeInput').value = '';
+  } catch(e) { toast(`Erreur: ${e.message}`, 'error'); }
 }
 
 // ── STOCK ──
@@ -512,38 +488,28 @@ async function loadStock() {
   btn.classList.add('spinning');
   try {
     const [stock, products] = await Promise.all([
-      grocyApi('GET','/stock'),
-      grocyApi('GET','/objects/products')
+      api('GET','/stock'),
+      api('GET','/objects/products')
     ]);
     const pmap = {};
-    (products||[]).forEach(p => pmap[p.id]=p);
-    allStock = (stock||[]).map(s=>({...s, product: pmap[s.product_id]||{name:`#${s.product_id}`}}));
+    (products||[]).forEach(p=>pmap[p.id]=p);
+    allStock = (stock||[]).map(s=>({...s,product:pmap[s.product_id]||{name:`#${s.product_id}`}}));
 
     const now = Date.now();
-    const low = allStock.filter(s=>{
-      const min = parseFloat(s.product?.min_stock_amount||0);
-      return min>0 && parseFloat(s.stock_amount)<=min;
-    }).length;
-    const expired = allStock.filter(s=>{
-      if (!s.best_before_date || s.best_before_date==='2999-12-31') return false;
-      return new Date(s.best_before_date) < now;
-    }).length;
+    const low = allStock.filter(s=>{ const m=parseFloat(s.product?.min_stock_amount||0); return m>0 && parseFloat(s.stock_amount)<=m; }).length;
+    const expired = allStock.filter(s=>s.best_before_date && s.best_before_date!=='2999-12-31' && new Date(s.best_before_date)<now).length;
 
     document.getElementById('statTotal').textContent = allStock.length;
     document.getElementById('statLow').textContent = low;
     document.getElementById('statExpiry').textContent = expired;
     renderStock(allStock);
-  } catch(e) {
-    toast(`Erreur stock: ${e.message}`,'error');
-  } finally { btn.classList.remove('spinning'); }
+  } catch(e) { toast(`Erreur: ${e.message}`, 'error'); }
+  finally { btn.classList.remove('spinning'); }
 }
 
 function renderStock(items) {
   const el = document.getElementById('stockList');
-  if (!items.length) {
-    el.innerHTML='<div class="empty-state"><div class="empty-icon">📦</div><div>Aucun produit</div></div>';
-    return;
-  }
+  if (!items.length) { el.innerHTML='<div class="empty-state"><div class="empty-icon">📦</div><div>Aucun produit</div></div>'; return; }
   el.innerHTML = items.map(s=>{
     const qty = parseFloat(s.stock_amount);
     const min = parseFloat(s.product?.min_stock_amount||0);
@@ -553,8 +519,7 @@ function renderStock(items) {
     if (s.best_before_date && s.best_before_date!=='2999-12-31') {
       const diff=Math.floor((new Date(s.best_before_date)-Date.now())/86400000);
       const cls=diff<0?'expiry-bad':diff<7?'expiry-warn':'expiry-ok';
-      const label=diff<0?'périmé':diff===0?'auj.':`${diff}j`;
-      expHtml=`<span class="expiry-chip ${cls}">${label}</span>`;
+      expHtml=`<span class="expiry-chip ${cls}">${diff<0?'périmé':diff===0?'auj.':diff+'j'}</span>`;
     }
     return `<div class="stock-item ${ic}" onclick="quickStock(${s.product_id},'${(s.product?.name||'').replace(/'/g,"\\'")}')">
       <span style="font-size:22px">🛒</span>
@@ -578,7 +543,7 @@ function quickStock(productId, name) {
   document.querySelectorAll('.tab')[0].classList.add('active');
   const el=document.getElementById('scanResult');
   el.innerHTML='<div class="loading"><div class="spinner"></div> Chargement...</div>';
-  grocyApi('GET',`/stock/products/${productId}`).then(si=>{
+  api('GET',`/stock/products/${productId}`).then(si=>{
     scanQty=1;
     const qty=si?(parseFloat(si.stock_amount)||0):0;
     el.innerHTML=`
@@ -587,12 +552,12 @@ function quickStock(productId, name) {
           <div class="product-icon">🛒</div>
           <div class="product-info">
             <div class="product-name">${name}</div>
-            <div class="product-barcode">stock actuel: ${qty}</div>
+            <div class="product-sub">stock actuel: ${qty}</div>
           </div>
           <div class="stock-badge">${qty}</div>
         </div>
         <div class="qty-row">
-          <span class="qty-label">quantité à modifier</span>
+          <span class="qty-label">quantité</span>
           <div class="qty-controls">
             <button class="qty-btn" onclick="changeQty(-1)">−</button>
             <span class="qty-num" id="qtyNum">1</span>
@@ -600,25 +565,24 @@ function quickStock(productId, name) {
           </div>
         </div>
         <div class="action-grid">
-          <button class="action-btn btn-purchase" onclick="doActionById('purchase',${productId})">➕ Ajouter</button>
-          <button class="action-btn btn-consume" onclick="doActionById('consume',${productId})">➖ Consommer</button>
-          <button class="action-btn btn-open" onclick="doActionById('open',${productId})">📦 Ouvrir</button>
-          <button class="action-btn btn-spoiled" onclick="doActionById('consume-spoiled',${productId})">🗑 Périmé</button>
+          <button class="action-btn btn-purchase" onclick="doActionId('purchase',${productId})">➕ Ajouter</button>
+          <button class="action-btn btn-consume" onclick="doActionId('consume',${productId})">➖ Consommer</button>
+          <button class="action-btn btn-open" onclick="doActionId('open',${productId})">📦 Ouvrir</button>
+          <button class="action-btn btn-spoiled" onclick="doActionId('consume-spoiled',${productId})">🗑 Périmé</button>
         </div>
       </div>`;
   }).catch(e=>toast(`Erreur: ${e.message}`,'error'));
 }
 
-async function doActionById(action, productId) {
+async function doActionId(action, productId) {
   try {
-    const endpoint = action==='consume-spoiled'
-      ? `/stock/products/${productId}/consume`
-      : `/stock/products/${productId}/${action}`;
-    const body = action==='consume-spoiled' ? {amount:scanQty,spoiled:true} : {amount:scanQty};
-    await grocyApi('POST', endpoint, body);
+    const ep = action==='consume-spoiled'?`/stock/products/${productId}/consume`:`/stock/products/${productId}/${action}`;
+    const body = action==='consume-spoiled'?{amount:scanQty,spoiled:true}:{amount:scanQty};
+    await api('POST', ep, body);
     const labels={purchase:'Ajouté ✓',consume:'Consommé ✓',open:'Ouvert ✓','consume-spoiled':'Supprimé ✓'};
     toast(labels[action],'success');
-    quickStock(productId, document.querySelector('.product-name')?.textContent||'');
+    const n=document.querySelector('.product-name')?.textContent||'';
+    setTimeout(()=>quickStock(productId,n),600);
   } catch(e) { toast(`Erreur: ${e.message}`,'error'); }
 }
 
@@ -627,12 +591,9 @@ async function loadShopping() {
   const btn=document.getElementById('refreshShop');
   btn.classList.add('spinning');
   try {
-    const items = await grocyApi('GET','/stock/shoppinglist');
+    const items = await api('GET','/stock/shoppinglist');
     const el=document.getElementById('shoppingList');
-    if (!items?.length) {
-      el.innerHTML='<div class="empty-state"><div class="empty-icon">🛍</div><div>Liste vide</div></div>';
-      return;
-    }
+    if (!items?.length) { el.innerHTML='<div class="empty-state"><div class="empty-icon">🛍</div><div>Liste vide</div></div>'; return; }
     el.innerHTML=items.map(item=>`
       <div class="shopping-item" id="shop-${item.id}">
         <div class="check-box" onclick="this.classList.toggle('checked');this.textContent=this.classList.contains('checked')?'✓':'';this.closest('.shopping-item').classList.toggle('done')"></div>
@@ -641,7 +602,7 @@ async function loadShopping() {
           <div class="shop-qty">${item.amount} ${item.qu?.name||''}</div>
         </div>
       </div>`).join('');
-  } catch(e) { toast(`Erreur courses: ${e.message}`,'error'); }
+  } catch(e) { toast(`Erreur: ${e.message}`,'error'); }
   finally { btn.classList.remove('spinning'); }
 }
 
@@ -649,13 +610,11 @@ async function loadShopping() {
 async function openCamera() {
   document.getElementById('cameraView').classList.add('open');
   try {
-    cameraStream = await navigator.mediaDevices.getUserMedia({
-      video:{facingMode:'environment',width:{ideal:1920},height:{ideal:1080}}
-    });
+    cameraStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
     document.getElementById('cameraVideo').srcObject = cameraStream;
     if (typeof ZXing!=='undefined') {
       codeReader = new ZXing.BrowserMultiFormatReader();
-      codeReader.decodeFromVideoDevice(null,'cameraVideo',(result,err)=>{
+      codeReader.decodeFromVideoDevice(null,'cameraVideo',(result)=>{
         if (result) {
           const code=result.getText();
           closeCamera();
@@ -664,16 +623,13 @@ async function openCamera() {
         }
       });
     }
-  } catch {
-    toast('Caméra non disponible','error');
-    closeCamera();
-  }
+  } catch { toast('Caméra non disponible','error'); closeCamera(); }
 }
 
 function closeCamera() {
   document.getElementById('cameraView').classList.remove('open');
-  if (cameraStream) { cameraStream.getTracks().forEach(t=>t.stop()); cameraStream=null; }
-  if (codeReader) { try{codeReader.reset();}catch{} codeReader=null; }
+  if (cameraStream){cameraStream.getTracks().forEach(t=>t.stop());cameraStream=null;}
+  if (codeReader){try{codeReader.reset();}catch{}codeReader=null;}
 }
 
 // ── INIT ──
